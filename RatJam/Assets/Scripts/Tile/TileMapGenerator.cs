@@ -6,6 +6,12 @@ public class TileMapGenerator
     public const int MAP_HEIGHT = 10;
 
     private ITile[] tileMap;
+    private TileFactory tileFactory;
+
+    public TileMapGenerator(TileFactory tileFactory)
+    {
+        this.tileFactory = tileFactory;
+    }
 
     public void GenerateMap()
     {
@@ -15,21 +21,8 @@ public class TileMapGenerator
         {
             for (int x = 0; x < MAP_WIDTH; ++x)
             {
-                ITile currTile = GenerateTile(x, y);
-                SetTile(x, y, currTile);
+                SetTile(x, y, tileFactory.CreateTile(x, y));
             }
-        }
-    }
-
-    private ITile GenerateTile(int x, int y)
-    {
-        if (x == 0 || y == 0 || x == MAP_WIDTH - 1 || y == MAP_HEIGHT - 1)
-        {
-            return new WallTile();
-        }
-        else
-        {
-            return new FloorTile();
         }
     }
 
