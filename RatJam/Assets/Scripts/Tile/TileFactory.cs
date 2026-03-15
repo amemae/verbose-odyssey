@@ -1,6 +1,10 @@
 using UnityEngine;
 
+<<<<<<< HEAD
 public class TileFactory
+=======
+public class TileFactory : MonoBehaviour
+>>>>>>> c7854168294e829612b039cb2d9ae32b9aa3704a
 {
     public ITile CreateTile(int x, int y)
     {
