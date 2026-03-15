@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class TileMapGenerator
 {
-    private const int MAP_WIDTH = 10;
-    private const int MAP_HEIGHT = 10;
+    public const int MAP_WIDTH = 10;
+    public const int MAP_HEIGHT = 10;
 
     private ITile[] tileMap;
 
