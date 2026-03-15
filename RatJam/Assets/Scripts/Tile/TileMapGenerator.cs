@@ -33,7 +33,7 @@ public class TileMapGenerator
         }
     }
 
-    private ITile GetTile(int x, int y)
+    public ITile GetTile(int x, int y)
     {
         return tileMap[y * MAP_WIDTH + x];
     }
