@@ -5,19 +5,20 @@ public class BuildLevel : MonoBehaviour
     public GameObject TilePrefab;
     [SerializeField] private Sprite[] sprite;
 
+    public int[,] Map;
 
-
-
-    //DEBUG
-    public int[,] Map = {{ 0, 0, 0, 0, 0 },
-                        { 0, 1, 1, 1, 0 },
-                        { 0, 1, 1, 1, 0 },
-                        { 0, 1, 1, 1, 0 },
-                        { 0, 0, 0, 0, 0 } };
     private void Start()
     {
-        Map[2, 1] = 0;
-        DrawLevel(5, 5);
+        TileMapGenerator _tm = new TileMapGenerator(new TileFactory());
+        _tm.GenerateMap();
+        Map = new int[TileMapGenerator.MAP_WIDTH, TileMapGenerator.MAP_WIDTH];
+        for (int y = 0; y < TileMapGenerator.MAP_HEIGHT; y++)
+            for (int x = 0; x < TileMapGenerator.MAP_WIDTH; x++)
+            {
+                if (_tm.GetTile(x, y).TileType == TileType.Floor) Map[x, y] = 1;
+                if (_tm.GetTile(x, y).TileType == TileType.Wall) Map[x, y] = 0;
+            }
+        DrawLevel(TileMapGenerator.MAP_WIDTH, TileMapGenerator.MAP_HEIGHT);
     }
 
 
